@@ -1,5 +1,5 @@
 # Live-coding-535
-Here I will house the live coding scripts for ENT 535. This repo will be for all living coding exercised I create. 
+Here I will house the live coding scripts for ENT 535. This repo will be for all live coding exercises that I create. 
 
 My collaborator on this effort is my mentor, 535 instructor, and committee member, **Dr. Sara Hermann.**
 
