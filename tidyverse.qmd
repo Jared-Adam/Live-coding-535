@@ -1,0 +1,106 @@
+---
+title: "Welcome to the Tidyverse"
+author: "8/25/2023"
+format: 
+  revealjs:
+    theme: serif
+editor: visual
+---
+
+## What is [Tidyverse](https://www.tidyverse.org/)?
+
+:::columns
+::: {.column width="60%"}
+:::{.fragment .fade-up}
+- An *opinionated* collection of R packages
+:::
+:::{.fragment .fade-up}
+- ALL packages share an underlying **philosophy, grammar, and date structures**
+:::
+:::
+
+::: {.column width="40%"}
+![](tidyverse.png){width=300px}
+::: 
+:::
+
+## Core Tidyverse
+:::columns
+:::{.column width="40%"}
+- `ggplot2`
+- `dplyr`
+- `tidyr`
+- `tibble`
+- `readr`
+- `purrr`
+- `stringr`
+- `forcats`
+:::
+
+::: {.column width="60%"}
+![](tidyverse comb.png){width=500px}
+:::
+:::
+
+
+
+## But which *should* you know? 
+
+:::columns
+::: {.column width="25%"}
+:::{.fragment .fade-up}
+- `ggplot2`
+![](ggplot.png){width=200px}
+:::
+:::
+::: {.column width="25%"}
+:::{.fragment .fade-up}
+- `dplyr`
+![](dplyr.png){width=200px}
+:::
+:::
+:::
+::: {.column width="25%"}
+:::{.fragment .fade-up}
+- `tidyr`
+![](tidyr.png){width=200px}
+:::
+:::
+::: {.column width="25%"}
+:::{.fragment .fade-up}
+- `tibble`
+![](tibble.png){width=200px}
+:::
+:::
+:::
+
+
+
+
+
+
+
+## ggplot2 (Grammar of Graphics) ![](ggplot.png){width=80px}
+
+:::columns
+::: {.column width="60%"}
+:::{.fragment .fade-up}
+- System for *declaratively* creating graphics
+:::
+:::{.fragment .fade-up}
+- Provide data and tell ggplot how to map variables and aesthetics 
+:::
+:::{.fragment .fade-up}
+![](sent.prey.v3.2022.png){width=400px}
+:::
+:::
+::: {.column width="40%"}
+:::{.fragment .fade-up}
+![](glmer lycosidae.png){width=400px}
+:::
+:::{.fragment .fade-up}
+![](nmds all with stress.png){width=400px}
+:::
+:::
+:::
+
