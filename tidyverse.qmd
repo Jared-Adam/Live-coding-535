@@ -11,7 +11,8 @@ editor: visual
 format:
   revealjs:
     scrollable: true
-    highlight-style: arrow-light
+    highlight-style: atom-one
+    code-block-bg: true 
 ---
 
 ## What is [Tidyverse](https://www.tidyverse.org/)?
