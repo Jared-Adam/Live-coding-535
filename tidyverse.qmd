@@ -74,12 +74,6 @@ editor: visual
 :::
 :::
 
-
-
-
-
-
-
 ## ggplot2 (Grammar of Graphics) ![](ggplot.png){width=80px}
 
 :::columns
@@ -104,3 +98,46 @@ editor: visual
 :::
 :::
 
+## dplyr (Data Frame - plier) ![](dplyr.png){width=80px fit-align="right"}
+
+:::{.incremental}
+- Grammar of data manipulation 
+
+- Providing a consistent set of **verbs**
+
+- `mutate()` adds new variables that are functions or existing 
+variables 
+
+- `select()` picks variables based on their names 
+
+- `filter()` picks cases based on their values 
+
+- `summarise()` reduces multiple values down to a single summary 
+
+- `arrange()` changes the ordering of the rows
+:::
+
+## Bringing in Palmer Penguins **and** tidyverse
+
+```{.r code-line-numbers="|1-2|4-5"}
+install.packages("palmerpenguins") 
+install.packages("tidyverse")
+
+library(palmerpenguins)
+library(tidyverse)
+```
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+
+## Some quick code 
+
+```{r}
+#| echo: true
+
+penguins %>% 
+  select(species)
+```
