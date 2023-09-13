@@ -13,6 +13,8 @@ format:
     scrollable: true
     highlight-style: atom-one
     code-block-bg: true 
+  html:
+    css: styles.css
 ---
 
 ## What is [Tidyverse](https://www.tidyverse.org/)?
