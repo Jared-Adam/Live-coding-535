@@ -1,25 +1,19 @@
+# Step one, always,install and load needed packages
+
 install.packages("tidyverse")
+install.packages("palmerpenguins") # this should work as well as the next one 
 data(package = 'palmerpenguins')
 
-library(tidyverse)
+library(tidyverse) # note the packages loaded in with tidyverse
 library(palmerpenguins)
-penguins_raw <- penguins_raw
 
 
-# palmerpenguins <- penguins
-# as_tibble(penguins)
-# head(penguins)
-
-#what I want to add: mutate vs mutate_at (do a class change), try and summarise with characters (and then have them mutate_at to change and correctly), 
-      # use 5/6 verbs alone and in combination all while targetting one or two columns in palmer_raw. HW will be do work with palmer and get raw as close to the clean 
-      # as possible 
-## NEEEEED to talk about syntax and and pipe and commas and verbs 
+penguins_raw <- penguins_raw # let's bring these data into our environment
 
 
-
-test_raw <- penguins_raw
-as_tibble(test_raw)
-colnames(test_raw)
+test_raw <- penguins_raw # I always make a new copy of the df to have the OG if needed
+as_tibble(test_raw) # let's take a look 
+colnames(test_raw) # which columns do we want to mess with? this df is too wide to view fully on the console
 
 
 # this will tell us where there are NAs in the df
@@ -65,18 +59,21 @@ penguins_almost_clean$species[penguins_almost_clean$species == "Adelie Penguin (
 penguins_almost_clean$species[penguins_almost_clean$species == "Gentoo penguin (Pygoscelis papua)"] <- "Gentoo"
 penguins_almost_clean$species[penguins_almost_clean$species == "Chinstrap penguin (Pygoscelis antarctica)"] <- "Chinstrap"
 
-print(penguins_almost_clean, n = Inf)
+print(penguins_almost_clean, n = Inf) #why inf? So I can see all of the name changes. This df is short enough that it is OK!
 
 # change date to include just the year with a function
 
-year_function <- function (x) (as.numeric(format(x, "%Y")))
+year_function <- function (x) (as.numeric(format(x, "%Y"))) # x is the place holder variable for our df
 
-# mutate_at
+# mutate_at: allows for targeted transposing, rather than a new column
 clean_penguin <- penguins_almost_clean %>% 
-  mutate_at(c("year"), year_function)
+  mutate_at(c("year"), year_function) # year here is x above. 
 
 #and without a function
 clean_penguin$year <- as.numeric(format(clean_penguin$year, "%Y"))
+
+
+## This df is now clean, let's explore!!
 
 clean_penguin
 
@@ -132,6 +129,14 @@ clean_penguin %>%
     rn_bill_length_mm = round(bill_length_mm) #creating a column of rounded bill lengths, default round
   ) %>% 
   select(sp_year,rn_bill_length_mm) #placing these new columns an order I would like 
+
+# one more column manipulation with mutate
+# going to add a log transformation 
+clean_penguin %>% 
+  mutate(
+    log_bill_length = log(bill_length_mm)
+  ) %>% 
+  select(year, log_bill_length)
 
 #summary stats!!
 
