@@ -1,5 +1,5 @@
 #r bootcamp day 3 code
-
+# thi sis niceieh
 #surveys <- read_csv("https://raw.githubusercontent.com/saraherm/Applied_Biostatistics/master/combined.csv")
 
 surveys <- read.csv("https://raw.githubusercontent.com/saraherm/Applied_Biostatistics/main/combined.csv")
