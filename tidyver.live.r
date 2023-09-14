@@ -12,24 +12,24 @@ penguins_raw <- penguins_raw # let's bring these data into our environment
 
 
 test_raw <- penguins_raw # I always make a new copy of the df to have the OG if needed
-as_tibble(test_raw) # let's take a look 
-colnames(test_raw) # which columns do we want to mess with? this df is too wide to view fully on the console
+tibble::as_tibble(test_raw) # let's take a look 
+base::colnames(test_raw) # which columns do we want to mess with? this df is too wide to view fully on the console
 
 
 # this will tell us where there are NAs in the df
-which(is.na(test_raw), arr.ind = TRUE) #checking for NA locations in penguins_raw
+base::which(is.na(test_raw), arr.ind = TRUE) #checking for NA locations in penguins_raw
 
 test_raw <-
   na.omit(test_raw) #I must add this because there are NAs within this data set and these functions will not work otherwise 
 
 # let's now check to see if there are any left
-which(is.na(test_raw), arr.ind = TRUE)
+base::which(is.na(test_raw), arr.ind = TRUE)
 
 # we will not be working with the whole df right now, so let's choose which columns we want to work with
 #let's choose species, culmen length, Date Egg
 # select()
 df_select <- test_raw %>% #From the penguins data set
-  select(Species, 'Culmen Length (mm)', 'Date Egg', 'Individual ID') # selecting columns species, bill_length, and      year 
+  dplyr::select(Species, 'Culmen Length (mm)', 'Date Egg', 'Individual ID') # selecting columns species, bill_length, and      year 
 # I do not want to include ID anymore, so let's get rid of it
 df_deselect <- df_select %>% 
   select(-'Individual ID')
@@ -38,7 +38,7 @@ df_deselect <- df_select %>%
 # notice, can use quotes or not
 # the quotes will be important if your column names have numbers or spaces
 penguins_almost_clean <- df_deselect %>% 
-  rename(species = Species,
+  dplyr::rename(species = Species,
          bill_length_mm = 'Culmen Length (mm)',
          year = "Date Egg")
 
@@ -46,20 +46,38 @@ penguins_almost_clean <- df_deselect %>%
 # how many species are there? 
 # count()
 penguins_almost_clean %>% 
-  count(species)
-unique(penguins_almost_clean$species) # will also work if you just want the names
+  dplyr::count(species)
+base::unique(penguins_almost_clean$species) # will also work if you just want the names
 
-# clean_penguin %>% 
-#   case_when(clean_penguin$species == "Adelie Penguin (Pygoscelis adeliae)" ~ "Adelie",
-#           clean_penguin$species == "Gentoo penguin (Pygoscelis papua)" ~ "Gentoo",
-#           clean_penguin$species == "Chinstrap penguin (Pygoscelis antarctica)" ~ "Chinstrap")
-#           
+# Several options to rename ROWS: We will follow the case_when and BASE R versions in class, NOT case_match
 
+penguins_case_when <- penguins_almost_clean %>%
+  dplyr::mutate(species = case_when(species == "Adelie Penguin (Pygoscelis adeliae)" ~ "Adelie",
+                            species =="Gentoo penguin (Pygoscelis papua)" ~ "Gentoo",
+                            species =="Chinstrap penguin (Pygoscelis antarctica)" ~ "Chinstrap",                
+            .default = as.character(species))) %>% 
+  select(species, bill_length_mm, year) 
+print(penguins_case_when, n = Inf)
+
+# BASE R
 penguins_almost_clean$species[penguins_almost_clean$species == "Adelie Penguin (Pygoscelis adeliae)"] <- "Adelie"
 penguins_almost_clean$species[penguins_almost_clean$species == "Gentoo penguin (Pygoscelis papua)"] <- "Gentoo"
 penguins_almost_clean$species[penguins_almost_clean$species == "Chinstrap penguin (Pygoscelis antarctica)"] <- "Chinstrap"
 
 print(penguins_almost_clean, n = Inf) #why inf? So I can see all of the name changes. This df is short enough that it is OK!
+         
+
+# IF you like case_match, this will work similar to case_when
+# IF you wish you run this, highlight the code and then press Ctrl/ Command + Shift + C
+# case_match_example <- penguins_almost_clean %>% 
+#   mutate(this = case_match(species,
+#              "Adelie Penguin (Pygoscelis adeliae)" ~ "Adelie", # only one species change in this example
+#              .default = as.character(Species))) %>% 
+#   select(this)
+# print(case_match_example, n = Inf)
+
+
+# Date change, last step before 'clean'
 
 # change date to include just the year with a function
 
@@ -67,7 +85,7 @@ year_function <- function (x) (as.numeric(format(x, "%Y"))) # x is the place hol
 
 # mutate_at: allows for targeted transposing, rather than a new column
 clean_penguin <- penguins_almost_clean %>% 
-  mutate_at(c("year"), year_function) # year here is x above. 
+  dplyr::mutate_at(c("year"), year_function) # year here is x above. 
 
 #and without a function
 clean_penguin$year <- as.numeric(format(clean_penguin$year, "%Y"))
@@ -78,7 +96,7 @@ clean_penguin$year <- as.numeric(format(clean_penguin$year, "%Y"))
 clean_penguin
 
 clean_penguin %>% 
-  arrange(bill_length_mm) # default small to large 
+  dplyr::arrange(bill_length_mm) # default small to large 
 
 
 ### Challenge
@@ -89,7 +107,7 @@ clean_penguin %>%
 # What if I want to look at jsut one year?
 # does anyone remember that verb from the ppt? 
 clean_penguin %>% 
-  filter(year == 2007)
+  dplyr::filter(year == 2007)
 
 ### Challenge 
 # How about looking at bill lengths from 2007 that are greater than the mean? 
@@ -124,7 +142,7 @@ clean_penguin %>%
   # on top of that, I want to round bill length 
 # select(), mutate(), select()
 clean_penguin %>%
-  mutate( #mutate()
+  dplyr::mutate( 
     sp_year = paste(species, "-", year), #adding a new column named 'sp_year' and pasting the species column and year column with a dash between them. 
     rn_bill_length_mm = round(bill_length_mm) #creating a column of rounded bill lengths, default round
   ) %>% 
@@ -142,7 +160,7 @@ clean_penguin %>%
 
 # summarize ()
 clean_penguin %>% 
-  summarize( #summarize to run summary stats 
+  dplyr::summarize( #summarize to run summary stats 
   bill_length_mean = mean(bill_length_mm), #new column with mean value of bill length
   bill_length_sd = sd(bill_length_mm) #new column with standard deviation value of bill length
   )
