@@ -5,8 +5,8 @@ format:
   revealjs:
     theme: serif
 editor: visual
-
 ---
+
 ---
 format:
   revealjs:
@@ -17,140 +17,192 @@ format:
     css: styles.css
 ---
 
+## Outline and Objectives 
+::: {.fragment .fade-up}
+- What is a package and how to we *get* them? 
+:::
+
+::: {.fragment .fade-up}
+- What is the tidyverse? 
+:::
+
+::: {.fragment .fade-up}
+- Packages in the tidyverse 
+:::
+
+::: {.fragment .fade-up}
+- The four most commonly used packages in tidyverse with some brief examples
+:::
+
+:::{.fragment .fade-up}
+- Live coding!
+:::
+
+## What are **packages**?
+
+::: {.fragment .fade-up}
+-   Built in functions like *mean()*, *max()*, *str()*... 
+:::
+::: {.fragment .fade-up}
+- **BUT** there are many not built into Base R
+:::
+::: {.fragment .fade-up}
+- These functions are nestled within **packages** of which we can download 
+:::
+
+## How to download a package 
+
+```{.r code-line-numbers="1|3"}
+install.packages("tidyverse")
+
+library(tidyverse)
+
+```
+
+
+
 ## What is [Tidyverse](https://www.tidyverse.org/)?
 
-:::columns
+::: columns
 ::: {.column width="60%"}
-:::{.fragment .fade-up}
-- An *opinionated* collection of R packages
+::: {.fragment .fade-up}
+-   An *opinionated* collection of R packages
 :::
-:::{.fragment .fade-up}
-- ALL packages share an underlying **philosophy, grammar, and date structures**
+
+::: {.fragment .fade-up}
+-   ALL packages share an underlying **philosophy, grammar (low-level), and date structures**
+:::
+
+::: {.fragment .fade-up}
+- Meaning: Learning one means it is *easier* to learn the next
+:::
+
+::: {.fragment .fade-up}
+- Facilitates the conversation *between* human and computer on data science and manipulation challenges
 :::
 :::
 
 ::: {.column width="40%"}
-![](tidyverse.png){width=300px}
-::: 
+![](tidyverse.png){width="300px"}
+:::
 :::
 
 ## Core Tidyverse
-:::columns
-:::{.column width="40%"}
-- `ggplot2`
-- `dplyr`
-- `tidyr`
-- `tibble`
-- `readr`
-- `purrr`
-- `stringr`
-- `forcats`
-:::
 
-::: {.column width="60%"}
-![](tidyverse comb.png){width=500px}
-:::
-:::
-
-
-
-## But which *should* you know? 
-
-:::columns
-::: {.column width="25%"}
-:::{.fragment .fade-up}
-- `ggplot2`
-![](ggplot.png){width=200px}
-:::
-:::
-::: {.column width="25%"}
-:::{.fragment .fade-up}
-- `dplyr`
-![](dplyr.png){width=200px}
-:::
-:::
-:::
-::: {.column width="25%"}
-:::{.fragment .fade-up}
-- `tidyr`
-![](tidyr.png){width=200px}
-:::
-:::
-::: {.column width="25%"}
-:::{.fragment .fade-up}
-- `tibble`
-![](tibble.png){width=200px}
-:::
-:::
-
-
-## ggplot2 (Grammar of Graphics) ![](ggplot.png){width=80px}
-
-:::columns
-::: {.column width="60%"}
-:::{.fragment .fade-up}
-- System for *declaratively* creating graphics
-:::
-:::{.fragment .fade-up}
-- Provide data and tell ggplot how to map variables and aesthetics 
-:::
-:::{.fragment .fade-up}
-![](sent.prey.v3.2022.png){width=400px}
-:::
-:::
+::: columns
 ::: {.column width="40%"}
-:::{.fragment .fade-up}
-![](glmer lycosidae.png){width=400px}
-:::
-:::{.fragment .fade-up}
-![](nmds all with stress.png){width=400px}
-:::
-:::
-:::
-
-## dplyr (Data Frame - plier) ![](dplyr.png){width=80px fit-align="right"}
-
-:::{.incremental}
-- Grammar of data manipulation 
-
-- Providing a consistent set of **verbs**
-
-- `mutate()` adds new variables that are functions or existing 
-variables 
-
-- `select()` picks variables based on their names 
-
-- `filter()` picks cases based on their values 
-
-- `summarize()` reduces multiple values down to a single summary 
-
-- `arrange()` changes the ordering of the rows
+-   `ggplot2`
+-   `dplyr`
+-   `tidyr`
+-   `tibble`
+-   `readr`
+-   `purrr`
+-   `stringr`
+-   `forcats`
 :::
 
-## tidyr (Tidy data)![](tidyr.png){width=80px}
-:::{.incremental}
-- Used to create tidy data
-- Every column is a variable
-- Every row is an observation
-- Every cell is a single value
-- Tidy data is data ready for analysis 
-- `nest()` converts grouped data to a form where each group becomes a single row containing a nested data frame
-- `pivot_longer/ wider()` converts between long and wide forms 
-- `drop_na()` make explicit values implicit 
-- `replace_na()` replace missing values with a known value 
+::: {.column width="60%"}
+![](tidyverse%20comb.png){width="500px"}
+:::
 :::
 
-## tibble 
-::: {.incremental}
-- Modern re-imagining of data.frame
-- Produces **more** errors to confront problems earlier
-- **Won't** change variable names or types (which data.frame did)
-- Superior for large data sets 
+## But which *should* you know?
+
+::: columns
+::: {.column width="25%"}
+::: {.fragment .fade-up}
+-   `ggplot2` ![](ggplot.png){width="200px"}
+:::
 :::
 
-## tibble example 
+::: {.column width="25%"}
+::: {.fragment .fade-up}
+-   `dplyr` ![](dplyr.png){width="200px"}
+:::
+:::
+:::
 
-```{.r}
+::: {.column width="25%"}
+::: {.fragment .fade-up}
+-   `tidyr` ![](tidyr.png){width="200px"}
+:::
+:::
+
+::: {.column width="25%"}
+::: {.fragment .fade-up}
+-   `tibble` ![](tibble.png){width="200px"}
+:::
+:::
+
+## ggplot2 (Grammar of Graphics) ![](ggplot.png){width="80px"}
+
+::: columns
+::: {.column width="60%"}
+::: {.fragment .fade-up}
+-   System for *declaratively* creating graphics
+:::
+
+::: {.fragment .fade-up}
+-   Provide data and tell ggplot how to map variables and aesthetics
+:::
+
+::: {.fragment .fade-up}
+![](sent.prey.v3.2022.png){width="400px"}
+:::
+:::
+
+::: {.column width="40%"}
+::: {.fragment .fade-up}
+![](glmer%20lycosidae.png){width="400px"}
+:::
+
+::: {.fragment .fade-up}
+![](nmds%20all%20with%20stress.png){width="400px"}
+:::
+:::
+:::
+
+## dplyr (Data Frame - plier) ![](dplyr.png){width="80px" fit-align="right"}
+
+::: incremental
+-   Grammar of data manipulation
+
+-   Providing a consistent set of **verbs**
+
+-   `mutate()` adds new variables that are functions or existing variables
+
+-   `select()` picks variables based on their names
+
+-   `filter()` picks cases based on their values
+
+-   `summarize()` reduces multiple values down to a single summary
+
+-   `arrange()` changes the ordering of the rows
+:::
+
+## tidyr (Tidy data)![](tidyr.png){width="80px"}
+
+::: incremental
+-   Used to create tidy data
+-   Every column is a variable
+-   Every row is an observation
+-   Every cell is a single value
+-   Tidy data is data ready for analysis
+
+:::
+
+## tibble ![](tibble.png){width="80px"}
+
+::: incremental
+-   Modern re-imagining of data.frame
+-   Produces **more** errors to confront problems earlier
+-   **Won't** change variable names or types (which data.frame did)
+-   Superior for large data sets
+:::
+
+## tibble example
+
+``` r
 data <- data.frame(a = 1:3, b = letters[1:3], c = Sys.Date() - 1:3)
 data
 #>   a b          c
@@ -169,7 +221,7 @@ as_tibble(data)
 
 ## Loading in Palmer Penguins **and** tidyverse
 
-```{.r code-line-numbers="1-2|4-5"}
+``` {.r code-line-numbers="1-2|4-5"}
 install.packages("palmerpenguins") 
 install.packages("tidyverse")
 
@@ -184,7 +236,7 @@ library(palmerpenguins)
 
 ## Dplyr example
 
-```{.r code-line-numbers="1|2|3-6|7|9"}
+``` {.r code-line-numbers="1|2|3-6|7|9"}
 new_penguins_df <- penguins %>%
   select(species, bill_length_mm, year) %>% 
   mutate( 
@@ -196,7 +248,7 @@ new_penguins_df <- penguins %>%
 as_tibble(new_penguins_df)
 ```
 
-## Dplyr example 
+## Dplyr example
 
 ```{r}
 #| echo: true
@@ -211,14 +263,4 @@ new_penguins_df <- penguins %>%
 as_tibble(new_penguins_df)
 ```
 
-# Letuce Code! Please open rstudio 
-
-
-
-
-
-
-
-
-
-
+# Lettuce Code! Please open rstudio
