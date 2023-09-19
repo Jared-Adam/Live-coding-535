@@ -17,49 +17,49 @@ format:
     css: styles.css
 ---
 
-## Outline and Objectives 
+## Outline and Objectives
+
 ::: {.fragment .fade-up}
-- What is a package and how to we *get* them? 
+-   What is a package and how to we *get* them?
 :::
 
 ::: {.fragment .fade-up}
-- What is the tidyverse? 
+-   What is the tidyverse?
 :::
 
 ::: {.fragment .fade-up}
-- Packages in the tidyverse 
+-   Packages in the tidyverse
 :::
 
 ::: {.fragment .fade-up}
-- The four most commonly used packages in tidyverse with some brief examples
+-   The four most commonly used packages in tidyverse with some brief examples
 :::
 
-:::{.fragment .fade-up}
-- Live coding!
+::: {.fragment .fade-up}
+-   Live coding!
 :::
 
 ## What are **packages**?
 
 ::: {.fragment .fade-up}
--   Built in functions like *mean()*, *max()*, *str()*... 
-:::
-::: {.fragment .fade-up}
-- **BUT** there are many not built into Base R
-:::
-::: {.fragment .fade-up}
-- These functions are nestled within **packages** of which we can download 
+-   Built in functions like *mean()*, *max()*, *str()*...
 :::
 
-## How to download a package 
+::: {.fragment .fade-up}
+-   **BUT** there are many not built into Base R
+:::
 
-```{.r code-line-numbers="1|3"}
+::: {.fragment .fade-up}
+-   These functions are nestled within **packages** of which we can download
+:::
+
+## How to download a package
+
+``` {.r code-line-numbers="1|3"}
 install.packages("tidyverse")
 
 library(tidyverse)
-
 ```
-
-
 
 ## What is [Tidyverse](https://www.tidyverse.org/)?
 
@@ -74,11 +74,11 @@ library(tidyverse)
 :::
 
 ::: {.fragment .fade-up}
-- Meaning: Learning one means it is *easier* to learn the next
+-   Meaning: Learning one means it is *easier* to learn the next
 :::
 
 ::: {.fragment .fade-up}
-- Facilitates the conversation *between* human and computer on data science and manipulation challenges
+-   Facilitates the conversation *between* human and computer on data science and manipulation challenges
 :::
 :::
 
@@ -162,6 +162,10 @@ library(tidyverse)
 :::
 :::
 
+## The pipe %>% 
+
+
+
 ## dplyr (Data Frame - plier) ![](dplyr.png){width="80px" fit-align="right"}
 
 ::: incremental
@@ -188,7 +192,6 @@ library(tidyverse)
 -   Every row is an observation
 -   Every cell is a single value
 -   Tidy data is data ready for analysis
-
 :::
 
 ## tibble ![](tibble.png){width="80px"}

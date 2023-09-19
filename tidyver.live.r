@@ -12,8 +12,6 @@ penguins_raw <- penguins_raw # let's bring these data into our environment
 
 test_raw <- penguins_raw # I always make a new copy of the df to have the OG if needed
 tibble::as_tibble(test_raw) # let's take a look 
-base::colnames(test_raw) # which columns do we want to mess with? this df is too wide to view fully on the console
-
 
 # this will tell us where there are NAs in the df
 base::which(is.na(test_raw), arr.ind = TRUE) #checking for NA locations in penguins_raw
@@ -23,6 +21,9 @@ test_raw <-
 
 # let's now check to see if there are any left
 base::which(is.na(test_raw), arr.ind = TRUE)
+
+
+base::colnames(test_raw) # which columns do we want to mess with? this df is too wide to view fully on the console
 
 # we will not be working with the whole df right now, so let's choose which columns we want to work with
 #let's choose species, culmen length, Date Egg
@@ -40,12 +41,13 @@ penguins_almost_clean <- df_deselect %>%
   dplyr::rename(species = Species,
          bill_length_mm = 'Culmen Length (mm)',
          year = "Date Egg")
-
+penguins_almost_clean
 # now, let's clean up our species names 
 # how many species are there? 
 # count()
 penguins_almost_clean %>% 
   dplyr::count(species)
+#do not show this in class
 base::unique(penguins_almost_clean$species) # will also work if you just want the names
 
 # Several options to rename ROWS: We will follow the case_when and BASE R versions in class, NOT case_match
@@ -54,8 +56,9 @@ penguins_case_when <- penguins_almost_clean %>%
   dplyr::mutate(species = case_when(species == "Adelie Penguin (Pygoscelis adeliae)" ~ "Adelie",
                             species =="Gentoo penguin (Pygoscelis papua)" ~ "Gentoo",
                             species =="Chinstrap penguin (Pygoscelis antarctica)" ~ "Chinstrap",                
-            .default = as.character(species))) %>% 
-  select(species, bill_length_mm, year) 
+            .default = as.character(species)))
+# %>% 
+#   select(species, bill_length_mm, year) 
 print(penguins_case_when, n = Inf)
 
 # BASE R
@@ -68,13 +71,16 @@ print(penguins_almost_clean, n = Inf) #why inf? So I can see all of the name cha
 
 # IF you like case_match, this will work similar to case_when
 # IF you wish you run this, highlight the code and then press Ctrl/ Command + Shift + C
-# case_match_example <- penguins_almost_clean %>% 
+# case_match_example <- penguins_almost_clean %>%
 #   mutate(this = case_match(species,
 #              "Adelie Penguin (Pygoscelis adeliae)" ~ "Adelie", # only one species change in this example
-#              .default = as.character(Species))) %>% 
+#              .default = as.character(Species))) %>%
 #   select(this)
 # print(case_match_example, n = Inf)
 
+
+# Function note, let's look at what the syntax for functions are 
+?mean
 
 # Date change, last step before 'clean'
 
@@ -83,7 +89,7 @@ print(penguins_almost_clean, n = Inf) #why inf? So I can see all of the name cha
 year_function <- function (x) (as.numeric(format(x, "%Y"))) # x is the place holder variable for our df
 
 # mutate_at: allows for targeted transposing, rather than a new column
-clean_penguin <- penguins_almost_clean %>% 
+clean_penguin <- penguins_case_when %>% 
   dplyr::mutate_at(c("year"), year_function) # year here is x above. 
 
 #and without a function
@@ -97,13 +103,18 @@ clean_penguin
 clean_penguin %>% 
   dplyr::arrange(bill_length_mm) # default small to large 
 
+# add this above 
+test_factor <- clean_penguin 
+test_factor$year <- as.factor(test_factor$year)
+test_factor %>% 
+  arrange(year, desc(bill_length_mm))
 
 ### Challenge
 # How about looking at bill length in desc order BY year?
 clean_penguin %>% 
   arrange(year, desc(bill_length_mm))
 
-# What if I want to look at jsut one year?
+# What if I want to look at just one year?
 # does anyone remember that verb from the ppt? 
 clean_penguin %>% 
   dplyr::filter(year == 2007)
@@ -129,6 +140,7 @@ clean_penguin %>%
     species == "Chinstrap" | species == "Gentoo" # look in species and pull out chinstrap and gentoo. | allows to command two species, similar to 'or'
   ) 
 
+## Challenge, how else can we do this? !=
 clean_penguin %>%
   filter(
     year == 2007,#using the '==' operator to show everything with the year 2007
