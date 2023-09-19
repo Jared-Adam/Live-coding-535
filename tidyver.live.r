@@ -7,7 +7,6 @@ data(package = 'palmerpenguins')
 library(tidyverse) # note the packages loaded in with tidyverse
 library(palmerpenguins)
 
-
 penguins_raw <- penguins_raw # let's bring these data into our environment
 
 
