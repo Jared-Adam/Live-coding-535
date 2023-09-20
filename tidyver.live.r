@@ -61,10 +61,11 @@ penguins_case_when <- penguins_almost_clean %>%
 #   select(species, bill_length_mm, year) 
 print(penguins_case_when, n = Inf)
 
+## Another option 
 # BASE R
-penguins_almost_clean$species[penguins_almost_clean$species == "Adelie Penguin (Pygoscelis adeliae)"] <- "Adelie"
-penguins_almost_clean$species[penguins_almost_clean$species == "Gentoo penguin (Pygoscelis papua)"] <- "Gentoo"
-penguins_almost_clean$species[penguins_almost_clean$species == "Chinstrap penguin (Pygoscelis antarctica)"] <- "Chinstrap"
+# penguins_almost_clean$species[penguins_almost_clean$species == "Adelie Penguin (Pygoscelis adeliae)"] <- "Adelie"
+# penguins_almost_clean$species[penguins_almost_clean$species == "Gentoo penguin (Pygoscelis papua)"] <- "Gentoo"
+# penguins_almost_clean$species[penguins_almost_clean$species == "Chinstrap penguin (Pygoscelis antarctica)"] <- "Chinstrap"
 
 print(penguins_almost_clean, n = Inf) #why inf? So I can see all of the name changes. This df is short enough that it is OK!
          
@@ -79,8 +80,14 @@ print(penguins_almost_clean, n = Inf) #why inf? So I can see all of the name cha
 # print(case_match_example, n = Inf)
 
 
+
 # Function note, let's look at what the syntax for functions are 
 ?mean
+
+# why do we use functions?
+    # optimize our code 
+    # remove need for repetitive copy pasting practices 
+    # prevent creation of hard to debug errors or missed mistakes in our results 
 
 # Date change, last step before 'clean'
 
