@@ -105,7 +105,7 @@ shapiro.test(monarch$EGG_TOT)
 #Use ks.test() function to do this!! (hint – it requires more info than shapiro 
 #test, check the help page to read more) 
 
-ks.test(monarch$EGG_TOT, 'dnorm')
+ks_test <- ks.test(monarch$EGG_TOT, 'dnorm')
 ?ks.test  #to learn how to use other distributions
 
 #Let’s remove tuberosa from the data set!!

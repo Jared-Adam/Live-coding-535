@@ -68,7 +68,6 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
-
 ## What is [Tidyverse](https://www.tidyverse.org/)?
 
 ::: columns
@@ -170,7 +169,6 @@ library(palmerpenguins)
 :::
 :::
 
-
 ## dplyr (Data Frame - plier) ![](dplyr.png){width="80px" fit-align="right"}
 
 ::: incremental
@@ -189,18 +187,18 @@ library(palmerpenguins)
 -   `arrange()` changes the ordering of the rows
 :::
 
-## The pipe **%>%** operator
+## The pipe **%\>%** operator
 
 ::: {.fragment .fade-up}
-- Efficient means to make many changes to a df at once
+-   Efficient means to make many changes to a df at once
 :::
 
 ::: {.fragment .fade-up}
-- Water through system,the commands run top to bottom 
+-   Water through system,the commands run top to bottom
 :::
 
 ::: {.fragment .fade-up}
-- OR a conveyor belt of operations 
+-   OR a conveyor belt of operations
 :::
 
 ## Dplyr example
