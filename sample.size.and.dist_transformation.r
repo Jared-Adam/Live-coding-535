@@ -9,7 +9,9 @@ ames <- ames
 plot(density(ames$Sale_Price))
 
 # this data set is big with n=2930 samples
-# what might happen to this distribution if we did not have enough samples? 
+# what might happen to this distribution if we did not have enough samples?
+?sample
+
 test_low <- sample(ames$Sale_Price, 10, replace = TRUE)
 plot(density(test_low))
 
@@ -27,23 +29,15 @@ test_log <- ames
 test_log$Sale_Price <- log(test_log$Sale_Price) 
 plot(density(test_log$Sale_Price))
 
+#lettuce look at normality
+#visual way
+#not air tight, but it is nice for quick visualization 
 ?qqnorm
 qqnorm(ames$Sale_Price)
 qqnorm(test_log$Sale_Price)
+qqline(test_log$Sale_Price)
 
-
-# boxcox test to exclude in the live coding 
-
-# test_model <- glm(Sale_Price ~ Neighborhood, data = ames)
-# bc <- boxcox(ames$Sale_Price ~ ames$Neighborhood)
-
-# lambda <- bc$x[which.max(bc$y)]
-# 
-# bcmodel <- glm((Sale_Price^lambda-1)/lambda ~ Neighborhood, data = ames)
-# 
-# qqnorm(test_model$residuals)
-# qqnorm(bcmodel$residuals)
-
+## Ended here on 9/25/2023
 
 # Lily and monarchs: slides in r boot camp 3 
 
@@ -55,6 +49,7 @@ as_tibble(monarch)
 #column names?
 colnames(monarch)
 
+#
 data <- monarch
 
 names(data) <- tolower(names(data))
@@ -102,6 +97,9 @@ hist(data2$egg_tot)
 plot(data2$week, data2$egg_tot)
 
 
+##
+# If you want to change things to a factor, here are two methods
+
 # DO NOT change anything to a function
 # class change with function 
 # as_factor <- function(x) {as.factor(format((x)))}
@@ -123,7 +121,8 @@ plot(data2$week, data2$egg_tot)
 #          across(4, as.factor))
 # dplyr_monarch
 # plot(dplyr_monarch$week, dplyr_monarch$egg_tot) # and these values are different than the above... 
-# ##
+
+##
 
 
 #Let’s test the homogeneity of variance when all weeks are included
@@ -144,7 +143,7 @@ fligner.test(data2$egg_tot~data2$week)
 #ANOVA, and regression analysis. Violation of this assumption can lead to 
 #incorrect conclusions, particularly in cases where the sample sizes are unequal.
 
-# this information is in the ppt 
+ 
 
 # POST SLIDES 
 #Remove all weeks <4 and >10
