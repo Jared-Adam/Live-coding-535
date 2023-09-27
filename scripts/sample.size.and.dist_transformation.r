@@ -79,6 +79,18 @@ shapiro.test(data_select$egg_tot)
 ?ks.test
 ks_data <- ks.test(data_select$egg_tot, 'dnorm')
 ks_data
+hist(monarch$EGG_TOT)
+
+monarch %>% 
+  count(SPECIES)
+monarch %>% 
+
+
+
+
+
+
+
 
 
 #lettuce get rid of tuberosa 
