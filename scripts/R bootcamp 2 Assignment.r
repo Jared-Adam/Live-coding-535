@@ -63,10 +63,72 @@ library(ggplot2)
 ggplot(data = milkweeddata2, aes(x=Caterpillar_mass, y=Trichomes)) +
   geom_point(size = 2 , aes(color = Milkweed_species))  
 
+
+
+
 ##### Part 3 ####
 raw_wcrdata = read.csv("https://raw.githubusercontent.com/saraherm/Applied_Biostatistics/main/20230214_WCRdata.csv")
-library(tibble)
 library(tidyverse)
+
+?gsub
+test <- raw_wcrdata %>% 
+  mutate(root_g = gsub("g","", RootMass.g., fixed = T),
+         shoot_g= gsub("g","",ShootMass.g., fixed = T)) %>% 
+  select(Variety, shoot_g, root_g, DateGerm, DateWCR) %>% 
+  mutate(across(2:3, as.numeric)) 
+
+test_na <- test %>% 
+  na.omit(root_g) %>% 
+  na.omit(shoot_g)
+
+which(is.na(test_na$root_g))
+
+new <- dmy(test$DateGerm)
+as_tibble(new)
+
+date_test <- test
+
+as.Date(test$DateWCR, '%d/%m/%Y')
+
+as_tibble(date_test)
+test$DateGerm = as.Date(x = test$DateGerm, format = "%m/%d/%Y")
+as_tibble(test)
+test$DateWCR <- as.Date(x = test$DateWCR, format = "%m/%d/%Y")
+as_tibble(test)
+
+test$DateWCR = as.Date(test$DateWCR, format = "%m/%d/%y")
+as_tibble(test)
+
+?as.Date
+
+
+
+is.na(test_na$shoot_g)
+as_tibble(test_na)
+
+is.na(test$root_g)
+
+is.na(test$root_g)
+test_na <- na.omit(test$shoot_g)
+as_tibble(test_na)
+is.na(test_na)
+where(is.na(test))
+
+?na.omit
+
+?summarise
+test$root_g <- as.numeric(test$root_g)
+
+as_tibble(test)
+
+
+
+
+# %>% 
+#   select(root_g, shoot_g)
+as_tibble(test)
+
+
 
 View(raw_wcrdata)
 # raw_wcrdata = read.csv("20230214_WCRdata.csv")
@@ -102,6 +164,16 @@ as_tibble(cleaning_wcr)
 
 
 ##
+
+
+
+
+
+
+
+
+
+
 
 #THE OG function that has been split up below. NO roxygen2 here
 #keeping this here for reference, but not running 
