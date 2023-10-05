@@ -93,9 +93,42 @@ ggplot(clean_data, aes(y = INITIAL, x = choice_sum, fill = CHOICE)) +
   theme(text = element_text(family = "Avenir", size = 12), legend.position = "top",
         legend.title = element_blank(), 
         axis.title = element_text(size = 12), 
-        plot.title = element_text(size = 14), axis.text.x = element_blank(),
+        plot.title = element_text(size = 14),
+        axis.text.x = element_blank(),
         axis.ticks.x  = element_blank())+
   scale_fill_manual(values = c("darkolivegreen4", "cyan4"))
+
+
+
+ggplot(clean_data, aes(y = INITIAL, x = choice_sum, fill = CHOICE)) +
+  geom_col(position = "stack") +
+  facet_grid(rows = vars(MORPH)) +
+  labs(x = "Number of Aphids per Trt Arm",
+       y = "Initial host plant")+
+  theme(text = element_text(family = "Avenir", size = 12), legend.position = "top",
+        legend.title = element_blank(), 
+        axis.title = element_text(size = 12), 
+        axis.text.x = element_blank(),
+        axis.ticks.x  = element_blank())+
+  scale_fill_manual(values = c("darkolivegreen4", "cyan4"))
+## change the x axis 
+
+# sara 
+
+ggplot(clean_data, aes(y=INITIAL, x=choice_sum, fill=CHOICE))+
+  geom_col(position="stack")+
+  facet_grid(rows=vars(MORPH))+ #we want our panels grouped by aphid morph
+  labs(x="Number of Aphids per treatment arm", y="natal host plant")+ #labels
+  theme(text=element_text(family = "Avenir", size = 16), legend.position = "top",
+        legend.title = element_blank(), 
+        axis.title = element_text(size=18),
+        plot.title = element_text(size=22), 
+        axis.ticks.x=element_blank())+
+  scale_fill_manual(values=c("darkolivegreen3", "cyan4"))+
+  scale_x_continuous(labels = abs) #absolute values of the axis 
+
+
+
 
 
 
