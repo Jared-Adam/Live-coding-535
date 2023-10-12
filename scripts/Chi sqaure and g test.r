@@ -113,7 +113,7 @@ ggplot(clean_data, aes(y = INITIAL, x = choice_sum, fill = CHOICE)) +
   scale_fill_manual(values = c("darkolivegreen4", "cyan4"))
 ## change the x axis 
 
-# sara 
+# final
 
 ggplot(clean_data, aes(y=INITIAL, x=choice_sum, fill=CHOICE))+
   geom_col(position="stack")+
