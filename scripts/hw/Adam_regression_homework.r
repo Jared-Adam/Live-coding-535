@@ -80,10 +80,6 @@ beans = read.csv("https://raw.githubusercontent.com/saraherm/Applied_Biostatisti
 qqnorm(beans$severity)
 qqnorm(beans$TMAX30 + beans$severity + beans$TMIN30)
 
-
-## get rid of everything that is not weather data! 10/23/2023 with Sara
-
-
 #building my models to run for the stepwise in both directions 
 model.null = lm(severity ~ 1, data=beans)
 #null model is to debunk normal model? 
