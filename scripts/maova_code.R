@@ -2,6 +2,7 @@
 library(tidyverse)
 df<-read_csv("https://reneshbedre.github.io/assets/posts/ancova/manova_data.csv")
 
+# Do i need to do this? 
 # Next, we can calculate the summary statistics for dependent variable height and dependent variable canopy volume:
 df %>% group_by(plant_var) %>%  summarise(n = n(), mean = mean(height), sd = sd(height))
 
